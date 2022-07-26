@@ -7,6 +7,7 @@ import javax.imageio.ImageIO
 import javax.swing.*
 
 val activePlayers = hashMapOf<String, ActiveApexPlayer>()
+val windowSize = 720
 
 fun main(args: Array<String>) {
     val mapframe = JFrame()
@@ -14,10 +15,12 @@ fun main(args: Array<String>) {
     val map = MapPainter()
     mapframe.add(map)
 
-    mapframe.setSize(720, 720)
+    mapframe.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
+    mapframe.pack()
+    mapframe.setSize(windowSize, windowSize)
     mapframe.isVisible = true
 
-    /*Thread {
+    Thread {
         val reader = File("C:\\Users\\Fzzy\\Desktop\\test.json").bufferedReader()
         while (true) {
             val line = reader.readLine()
@@ -35,10 +38,12 @@ fun main(args: Array<String>) {
                     } else {
                         activePlayers[hash]!!.ingestData(obj)
                     }
+                    mapframe.repaint()
+                    Thread.sleep(10)
                 } catch (e :JSONException) {
 
                 }
             }
         }
-    }.start()*/
+    }.start()
 }

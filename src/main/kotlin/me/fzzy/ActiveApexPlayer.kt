@@ -20,12 +20,12 @@ class ActiveApexPlayer {
     fun ingestData(json: JSONObject) {
         try {
             val player = json.getJSONObject("player")
-            skin = player.getString("skin")
-            name = player.getString("name")
-            teamName = player.getString("teamName")
-            character = player.getString("character")
+            if (player.has("skin")) skin = player.getString("skin")
+            if (player.has("name")) name = player.getString("name")
+            if (player.has("teamName")) teamName = player.getString("teamName")
+            if (player.has("character")) character = player.getString("character")
 
-            nucleusHash = json.getString("nucleusHash")
+            if (player.has("nucleusHash")) nucleusHash = player.getString("nucleusHash")
 
             val timestamp = json.getLong("timestamp")
             val jsonPosition = player.getJSONObject("pos")
